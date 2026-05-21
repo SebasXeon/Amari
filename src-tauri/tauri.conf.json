@@ -12,6 +12,21 @@
   "app": {
     "windows": [
       {
+        "label": "main",
+        "url": "/app",
+        "title": "Amari Chat",
+        "width": 800,
+        "height": 600,
+        "minWidth": 400,
+        "minHeight": 300,
+        "resizable": true,
+        "decorations": true,
+        "skipTaskbar": false,
+        "visible": false
+      },
+      {
+        "label": "secondary",
+        "url": "/",
         "title": "amari",
         "width": 256,
         "height": 256,
@@ -20,7 +35,8 @@
         "resizable": false,
         "skipTaskbar": true,
         "transparent": true,
-        "shadow": false
+        "shadow": false,
+        "visible": true
       }
     ],
     "security": {
