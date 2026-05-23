@@ -49,6 +49,26 @@ fn set_secondary_click_through(app: tauri::AppHandle, click_through: bool) {
     }
 }
 
+#[tauri::command]
+fn load_character(app: tauri::AppHandle) -> Result<Option<String>, String> {
+    let docs = app.path().document_dir().map_err(|e| e.to_string())?;
+    let char_dir = docs.join("Amari").join("characters");
+    let char_path = char_dir.join("character.vrm");
+
+    // Ensure the directory exists so the user knows where to drop files
+    if let Err(e) = std::fs::create_dir_all(&char_dir) {
+        eprintln!("Failed to create character directory: {}", e);
+    }
+
+    if char_path.exists() {
+        let bytes = std::fs::read(&char_path).map_err(|e| e.to_string())?;
+        let encoded = base64::Engine::encode(&base64::engine::general_purpose::STANDARD, &bytes);
+        Ok(Some(encoded))
+    } else {
+        Ok(None)
+    }
+}
+
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     tauri::Builder::default()
@@ -58,6 +78,7 @@ pub fn run() {
             hide_main_window,
             set_secondary_click_through,
             get_cursor_info,
+            load_character,
         ])
         .setup(|app| {
             let main_window = app.get_webview_window("main").unwrap();

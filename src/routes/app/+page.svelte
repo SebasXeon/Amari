@@ -76,7 +76,7 @@
 <div class="flex justify-center items-center h-full w-full pb-16 bg-gray-100">
     <div class="h-full max-h-[90vh] w-full max-w-3xl p-4">
         <div class="flex flex-col h-full">
-            <div class="flex flex-col gap-0 flex-1 pb-4 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-100">
+            <div class="flex flex-col gap-0 flex-1 pb-4 overflow-y-auto scrollbar-thin scrollbar-gutter-auto scrollbar-thumb-gray-500 scrollbar-track-gray-100">
                 {#each items as item}
                     {#if isMessage(item)}
                         <div class="{item.role === 'user' ? 'justify-end' : 'justify-start'} flex w-full py-4">
@@ -135,7 +135,7 @@
                         <button class=" text-gray-400 rounded-full p-2" onclick={sendMessage}>
                             <Mic size={16} />
                         </button>
-                        <button class="bg-gray-500 text-white rounded-full p-2 shadow-sm" onclick={sendMessage}>
+                        <button class="bg-gray-600 text-white rounded-full p-2 shadow-sm" onclick={sendMessage}>
                             <ArrowUp size={16} />
                         </button>
                     </div>
